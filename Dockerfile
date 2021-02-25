@@ -32,4 +32,4 @@ RUN echo "kiney:lESReJ1WYWULKjV:10" >> ~/.config/deluge/auth
 #RUN deluge-console "config allow_remote"
 RUN sed -i 's/"allow_remote": false/"allow_remote": true/' ~/.config/deluge/core.conf
 
-CMD deluged
+CMD deluged -d
