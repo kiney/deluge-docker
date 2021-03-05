@@ -1,6 +1,6 @@
 FROM ubuntu:20.10
 
-ENV V 1
+ENV V 2
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
@@ -27,9 +27,10 @@ EXPOSE 61939
 EXPOSE 58846
 
 RUN deluged; sleep 1; killall deluged
-RUN echo "kiney:lESReJ1WYWULKjV:10" >> ~/.config/deluge/auth
+RUN echo "user:password:10" >> ~/.config/deluge/auth
 #RUN deluge-console "config -s allow_remote True"
 #RUN deluge-console "config allow_remote"
 RUN sed -i 's/"allow_remote": false/"allow_remote": true/' ~/.config/deluge/core.conf
 
-CMD deluged -d
+# stderr ist mit uncaught exceptions zugespammt
+CMD bash -c "deluged -d -L debug 2>/dev/null"
