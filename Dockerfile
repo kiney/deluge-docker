@@ -33,4 +33,4 @@ RUN echo "user:password:10" >> ~/.config/deluge/auth
 RUN sed -i 's/"allow_remote": false/"allow_remote": true/' ~/.config/deluge/core.conf
 
 # stderr ist mit uncaught exceptions zugespammt
-CMD bash -c "deluged -d -L debug 2>/dev/null"
+CMD bash -c "deluged -d -L error 2>/dev/null"
